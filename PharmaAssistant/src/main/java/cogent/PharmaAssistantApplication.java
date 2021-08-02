@@ -8,6 +8,7 @@ public class PharmaAssistantApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(PharmaAssistantApplication.class, args);
+		// co
 	}
 
 }
