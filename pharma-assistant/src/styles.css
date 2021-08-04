@@ -1,0 +1,15 @@
+.header-container-wrapper {
+	background-color: #008080;
+    width: 1000px;
+    height: 100px;
+    margin: auto;
+}
+#body_div{
+    margin: auto;
+    margin-top: 150px;
+    width: 400px;
+    
+}
+#tab {
+    width: 100%;  
+}
