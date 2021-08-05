@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  login(){
+  onSubmit(){
     const val:User = this.form.value;
     if(this.form.valid){
       this.ls.login(val).subscribe(result=>{console.log(result)});
