@@ -4,33 +4,31 @@
         <table id="tab">
             <tr>
                 <td>BATCH CODE</td>
-                <td><input type="text" id="batch_Code" formControlName="batch_code"/></td>
+                <td><input type="text" id="batchCode" formControlName="batchCode"/></td>
             </tr>
             <tr>
                 <td>WEIGHT</td>
-                <td><input type="text" id="weight" formControlName="weight"/></td>
+                <td><input type="number" id="weight" formControlName="weight"/></td>
             </tr>
             <tr>
                 <td>PRICE</td>
-                <td><input type="text" id="price" formControlName="price"/></td>
+                <td><input type="number" id="price" formControlName="price"/></td>
             </tr>
-            <div formGroupName="medicine">
             <tr>
                 <td>MEDICINE TYPE</td>
                 <td>
-                    <select id="medicine_type" formControlName="medicine_type">
-                        <option value="capsule">CAPSULE</option>
-                        <option value="syrups">SYRUPS</option>
+                    <select id="medicine" formControlName="medicine">
+                        <option value="http://localhost:5000/api/medicines/1">CAPSULE</option>
+                        <option value="http://localhost:5000/api/medicines/2">SYRUPS</option>
                     </select>
                 </td>
             </tr>
-            </div>
             <tr>
                 <td>REFRIGERATION</td>
                 <td>
-                    <input type="radio" id="yes" value="yes" name="refrigeration" formControlName="yes"/>
+                    <input type="radio" id="yes" value=true name="refrigeration" formControlName="refrigeration"/>
                     <label for="yes">YES</label>
-                    <input type="radio" id="no" value="no" name="refrigeration" formControlName="no"/>
+                    <input type="radio" id="no" value=false name="refrigeration" formControlName="refrigeration"/>
                     <label for="no">NO</label>
                 </td>
             </tr>

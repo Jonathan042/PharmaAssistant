@@ -23,8 +23,8 @@ public class Batch {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
 	private long id;
-	@Column
-	private String name;
+	@Column(name = "batch_code")
+	private String batchCode;
 	
 	@ManyToOne
     @JoinColumn(name = "medicine", nullable = false)
