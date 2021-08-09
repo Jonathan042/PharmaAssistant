@@ -18,15 +18,28 @@ export class AddBatchComponent implements OnInit {
     medicine : new FormControl(Validators.required)
   })
 
+  content:Batch[] = []
   constructor(private bs:BatchService) { }
 
   ngOnInit(): void {
   }
 
   onSubmit(){
+    this.bs.getBatch().subscribe(
+      data => {
+        this.content = data;
+      },
+      err => {
+        this.content = JSON.parse(err.error).message;
+      }
+    );
     const val:Batch = this.batchForm.value;
+    console.log(this.content);
     if(this.batchForm.valid){
-      this.bs.addBatch(val).subscribe();
+      this.bs.addBatch(val).subscribe(()=>{},
+        err => {
+          console.log(JSON.parse(err.error).message);
+        });
     }
   }
 
