@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { LoginService } from 'src/app/services/login.service';
+import { TokenStorageService } from 'src/app/services/token-storage.service';
 
 @Component({
   selector: 'app-login',
@@ -11,8 +12,11 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class LoginComponent implements OnInit {
   form: FormGroup;
+  isLoggedIn = false;
+  isLoginFailed = false;
+  errorMessage = '';
 
-  constructor(private fb:FormBuilder,private ls:LoginService,private router:Router) {
+  constructor(private fb:FormBuilder,private ls:LoginService,private tokenStorage: TokenStorageService,private router:Router) {
     this.form = this.fb.group({
       username: ['',Validators.required],
       password: ['',Validators.required]
@@ -20,13 +24,30 @@ export class LoginComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    if (this.tokenStorage.getToken()) {
+      this.isLoggedIn = true;
+    }
   }
 
   onSubmit(){
     const val:User = this.form.value;
-    if(this.form.valid){
-      this.ls.login(val).subscribe(result=>{console.log(result)});
-    }
+    this.ls.login(val).subscribe(
+      data => {
+        this.tokenStorage.saveToken(data.token);
+
+        this.isLoginFailed = false;
+        this.isLoggedIn = true;
+        this.reloadPage();
+      },
+      err => {
+        this.errorMessage = err.error.message;
+        this.isLoginFailed = true;
+      }
+    );
+  }
+  
+  reloadPage(): void {
+    window.location.reload();
   }
 
 }

@@ -10,6 +10,8 @@ import { LoginComponent } from './components/login/login.component';
 import { AddBatchComponent } from './components/add-batch/add-batch.component';
 import { LinkComponent } from './components/link/link.component';
 
+import { authInterceptorProviders } from './helpers/auth.interceptor';
+
 const routes: Routes=[
   { path: 'login', component: LoginComponent},
   { path: 'batches', component: LinkComponent},
@@ -31,7 +33,7 @@ const routes: Routes=[
     RouterModule.forRoot(routes),
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

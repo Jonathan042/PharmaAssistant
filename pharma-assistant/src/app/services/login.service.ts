@@ -19,9 +19,9 @@ export class LoginService {
 
   constructor(private httpc:HttpClient) { }
 
-  login(user:User) : Observable<string>{
+  login(user:User) : Observable<any>{
     console.log(user);
-    return this.httpc.post<TokenResponse>(this.baseurl,user,this.httpOptions).pipe(map(response=>response.token));
+    return this.httpc.post(this.baseurl,user,this.httpOptions);
   }
 
 }
