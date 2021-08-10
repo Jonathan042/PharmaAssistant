@@ -19,9 +19,9 @@ import lombok.Setter;
 
 @Entity
 @Table(name="medicine")
-@Data
-@Getter
-@Setter
+//@Data
+//@Getter
+//@Setter
 public class Medicine {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,4 +34,30 @@ public class Medicine {
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "medicine")
 	private Set<Batch> batches;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getMedicineType() {
+		return medicineType;
+	}
+
+	public void setMedicineType(String medicineType) {
+		this.medicineType = medicineType;
+	}
+
+	public Set<Batch> getBatches() {
+		return batches;
+	}
+
+	public void setBatches(Set<Batch> batches) {
+		this.batches = batches;
+	}
+	
+	
 }

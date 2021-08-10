@@ -15,9 +15,9 @@ import lombok.Setter;
 
 @Entity
 @Table(name="batch")
-@Data
-@Getter
-@Setter
+//@Data
+//@Getter
+//@Setter
 public class Batch {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,5 +35,43 @@ public class Batch {
 	private double price;
 	@Column
 	private boolean refrigeration;
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
+	public String getBatchCode() {
+		return batchCode;
+	}
+	public void setBatchCode(String batchCode) {
+		this.batchCode = batchCode;
+	}
+	public Medicine getMedicine() {
+		return medicine;
+	}
+	public void setMedicine(Medicine medicine) {
+		this.medicine = medicine;
+	}
+	public long getWeight() {
+		return weight;
+	}
+	public void setWeight(long weight) {
+		this.weight = weight;
+	}
+	public double getPrice() {
+		return price;
+	}
+	public void setPrice(double price) {
+		this.price = price;
+	}
+	public boolean isRefrigeration() {
+		return refrigeration;
+	}
+	public void setRefrigeration(boolean refrigeration) {
+		this.refrigeration = refrigeration;
+	}
+	
+	
 	
 }
