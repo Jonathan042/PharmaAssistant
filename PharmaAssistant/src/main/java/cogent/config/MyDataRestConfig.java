@@ -1,22 +1,48 @@
 package cogent.config;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
+import javax.persistence.EntityManager;
+import javax.persistence.metamodel.EntityType;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
-
-import cogent.entities.Batch;
-import cogent.entities.Medicine;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 
 @Configuration
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class MyDataRestConfig implements RepositoryRestConfigurer {
+
+	private EntityManager entityManager;
+
+	@Autowired
+	public MyDataRestConfig(EntityManager theEntityManager) {
+		entityManager = theEntityManager;
+	}
 
 	@Override
 	public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
-		Class[] domainTypes = {Batch.class, Medicine.class};
-		config.exposeIdsFor(domainTypes);
+		exposeIds(config);
 	}
 
+	private void exposeIds(RepositoryRestConfiguration config) {
+
+		Set<EntityType<?>> entities = entityManager.getMetamodel().getEntities();
+		List<Class> entityClasses = new ArrayList<>();
+		// - get the entity types for the entities
+		for (EntityType tempEntityType : entities) {
+
+			entityClasses.add(tempEntityType.getJavaType());
+			Class[] domainTypes = entityClasses.toArray(new Class[0]);
+			config.exposeIdsFor(domainTypes);
+		}
+
+	}
 	
 
 

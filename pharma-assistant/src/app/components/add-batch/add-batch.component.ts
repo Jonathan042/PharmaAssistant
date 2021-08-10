@@ -25,20 +25,20 @@ export class AddBatchComponent implements OnInit {
   }
 
   onSubmit(){
-    this.bs.getBatch().subscribe(
+    /*this.bs.getBatch().subscribe(
       data => {
         this.content = data;
       },
       err => {
-        this.content = JSON.parse(err.error).message;
+        //this.content = JSON.parse(err.error).message;
       }
-    );
+    );*/
     const val:Batch = this.batchForm.value;
-    console.log(this.content);
+    //console.log(this.content);
     if(this.batchForm.valid){
       this.bs.addBatch(val).subscribe(()=>{},
         err => {
-          console.log(JSON.parse(err.error).message);
+          //console.log(JSON.parse(err.error).message);
         });
     }
   }
