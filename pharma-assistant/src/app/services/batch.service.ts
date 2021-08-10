@@ -18,7 +18,6 @@ export class BatchService {
   constructor(private httpc:HttpClient) { }
 
   addBatch(batch:Batch){
-    console.log(batch);
     this.getBatch();
     return this.httpc.post(this.baseurl,batch,this.httpOptions);
   }
@@ -32,10 +31,4 @@ interface GetResponse{
   _embedded: {
     batches: Batch[];
   }, 
-  page: {
-    size: number,
-    totalElements: number,
-    totalPages: number,
-    number: number
-  }
 }
