@@ -6,15 +6,12 @@ import { Router } from '@angular/router';
 })
 export class ErrorService implements ErrorHandler{
 
-  private router: Router;
-
-
-  constructor(injector: Injector) {
-    setTimeout(() => this.router = injector.get(this.router));
+  constructor(injector: Injector,private router: Router) {
    }
 
    handleError(error){
-      this.router.navigate(['/error']);
+      console.log(error);
+      this.router.navigateByUrl('/error');
    }
    
 }

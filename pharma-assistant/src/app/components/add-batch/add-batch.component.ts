@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Batch } from 'src/app/models/batch';
 import { BatchService } from 'src/app/services/batch.service';
 
@@ -10,16 +10,16 @@ import { BatchService } from 'src/app/services/batch.service';
 })
 export class AddBatchComponent implements OnInit {
 
-  batchForm = new FormGroup({
-    batchCode : new FormControl(),
-    weight : new FormControl(Validators.min(100)),
-    price : new FormControl(),
-    refrigeration : new FormControl(),
-    medicine : new FormControl(Validators.required)
-  })
-
   content:Batch[] = []
-  constructor(private bs:BatchService) { }
+  constructor(private bs:BatchService,private fb:FormBuilder) { }
+
+  batchForm = this.fb.group({
+    batchCode : ['',Validators.compose([Validators.pattern(/^BTC-[a-zA-Z0-9]*$/),Validators.required])],
+    weight : ['',Validators.compose([Validators.min(100),Validators.required])],
+    price : ['',Validators.required],
+    refrigeration : ['',Validators.required],
+    medicine : ['',Validators.required]
+  })
 
   ngOnInit(): void {
   }
@@ -35,6 +35,7 @@ export class AddBatchComponent implements OnInit {
     );*/
     const val:Batch = this.batchForm.value;
     //console.log(this.content);
+    console.log(this.batchForm.valid);
     if(this.batchForm.valid){
       this.bs.addBatch(val).subscribe(()=>{},
         err => {

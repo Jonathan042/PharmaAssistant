@@ -1,4 +1,4 @@
-import { Component, NgModule } from '@angular/core';
+import { Component, ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { Routes, RouterModule } from '@angular/router';
@@ -12,13 +12,14 @@ import { LinkComponent } from './components/link/link.component';
 
 import { authInterceptorProviders } from './helpers/auth.interceptor';
 import { ErrorComponent } from './components/error/error.component';
+import { ErrorService } from './services/error.service';
 
 const routes: Routes=[
   { path: 'login', component: LoginComponent},
   { path: 'batches', component: LinkComponent},
   { path: 'batches/add', component: AddBatchComponent},
-  { path: '**',redirectTo: '/login',pathMatch:'full'},
-  { path: 'error', component: ErrorComponent}
+  { path: 'error', component: ErrorComponent},
+  { path: '**',redirectTo: '/login',pathMatch:'full'}
   
 ];
 
@@ -36,7 +37,10 @@ const routes: Routes=[
     RouterModule.forRoot(routes),
     ReactiveFormsModule
   ],
-  providers: [authInterceptorProviders],
+  providers: [
+    authInterceptorProviders,
+    {provide:ErrorHandler, useClass: ErrorService}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
