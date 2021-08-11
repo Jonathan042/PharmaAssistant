@@ -4,6 +4,5 @@ export class Batch {
         weight:number,
         price:number,
         refrigeration:boolean,
-        medicine:string
     ){}
 }

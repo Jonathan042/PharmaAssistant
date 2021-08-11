@@ -18,7 +18,9 @@ export class AddBatchComponent implements OnInit {
     weight : ['',Validators.compose([Validators.min(100),Validators.required])],
     price : ['',Validators.required],
     refrigeration : ['',Validators.required],
-    medicine : ['',Validators.required]
+    medicine : this.fb.group({
+      id : ['',Validators.required]
+    })
   })
 
   ngOnInit(): void {

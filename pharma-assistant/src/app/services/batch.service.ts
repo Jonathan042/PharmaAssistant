@@ -18,7 +18,7 @@ export class BatchService {
   constructor(private httpc:HttpClient) { }
 
   addBatch(batch:Batch){
-    this.getBatch();
+   // this.getBatch();
     return this.httpc.post(this.baseurl,batch,this.httpOptions);
   }
 
