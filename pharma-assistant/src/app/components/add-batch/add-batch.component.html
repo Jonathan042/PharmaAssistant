@@ -17,10 +17,12 @@
             <tr>
                 <td>MEDICINE TYPE</td>
                 <td>
-                    <select id="medicine" formControlName="medicine">
-                        <option value="http://localhost:5000/api/medicines/1">CAPSULE</option>
-                        <option value="http://localhost:5000/api/medicines/2">SYRUPS</option>
-                    </select>
+                    <div formGroupName="medicine">
+                        <select id="id" formControlName="id">
+                            <option value=1>CAPSULE</option>
+                            <option value=2>SYRUP</option>
+                        </select>
+                    </div>
                 </td>
             </tr>
             <tr>
