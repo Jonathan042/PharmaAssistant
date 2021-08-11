@@ -11,12 +11,15 @@ import { AddBatchComponent } from './components/add-batch/add-batch.component';
 import { LinkComponent } from './components/link/link.component';
 
 import { authInterceptorProviders } from './helpers/auth.interceptor';
+import { ErrorComponent } from './components/error/error.component';
 
 const routes: Routes=[
   { path: 'login', component: LoginComponent},
   { path: 'batches', component: LinkComponent},
   { path: 'batches/add', component: AddBatchComponent},
-  { path: '**',redirectTo: '/login',pathMatch:'full'}
+  { path: '**',redirectTo: '/login',pathMatch:'full'},
+  { path: 'error', component: ErrorComponent}
+  
 ];
 
 @NgModule({
