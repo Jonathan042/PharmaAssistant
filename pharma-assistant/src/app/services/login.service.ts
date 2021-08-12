@@ -20,7 +20,7 @@ export class LoginService {
   constructor(private httpc:HttpClient) { }
 
   login(user:User) : Observable<any>{
-    console.log(user);
+    //console.log(user);
     return this.httpc.post(this.baseurl,user,this.httpOptions);
   }
 

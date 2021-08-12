@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Batch } from 'src/app/models/batch';
 import { BatchService } from 'src/app/services/batch.service';
 
@@ -11,7 +12,7 @@ import { BatchService } from 'src/app/services/batch.service';
 export class AddBatchComponent implements OnInit {
 
   content:Batch[] = []
-  constructor(private bs:BatchService,private fb:FormBuilder) { }
+  constructor(private bs:BatchService,private fb:FormBuilder, private router:Router) { }
 
   batchForm = this.fb.group({
     batchCode : ['',Validators.compose([Validators.pattern(/^BTC-[a-zA-Z0-9]*$/),Validators.required])],
@@ -37,12 +38,14 @@ export class AddBatchComponent implements OnInit {
     );*/
     const val:Batch = this.batchForm.value;
     //console.log(this.content);
-    console.log(this.batchForm.valid);
+    //console.log(this.batchForm.valid);
     if(this.batchForm.valid){
       this.bs.addBatch(val).subscribe(()=>{},
         err => {
           //console.log(JSON.parse(err.error).message);
         });
+    } else {
+      this.router.navigateByUrl("/error");
     }
   }
 
