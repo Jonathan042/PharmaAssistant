@@ -13,10 +13,10 @@ public class BatchService {
 	@Autowired
 	private BatchRepository bdao;
 	
-	public void insertBatch(Batch b) throws BatchException {
+	public Batch insertBatch(Batch b) throws BatchException {
 		
 		if(bdao.findByBatchCode(b.getBatchCode()).isEmpty()) {
-			bdao.save(b);
+			return bdao.save(b);
 			}
 		else throw new BatchException();
 		
