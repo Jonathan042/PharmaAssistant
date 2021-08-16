@@ -15,7 +15,7 @@ public class BatchService {
 	
 	public Batch insertBatch(Batch b) throws BatchException {
 		
-		if(bdao.findByBatchCode(b.getBatchCode()).isEmpty()) {
+		if(!bdao.findByBatchCode(b.getBatchCode()).isPresent()) {
 			return bdao.save(b);
 			}
 		else throw new BatchException();
