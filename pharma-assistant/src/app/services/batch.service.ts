@@ -8,7 +8,7 @@ import { Batch } from '../models/batch';
   providedIn: 'root'
 })
 export class BatchService {
-  private baseurl = "http://localhost:5000/api/batches"
+  private baseurl = "http://localhost:5000/rest/batches"
   httpOptions={
     headers: new HttpHeaders({
       'Content-Type':'application/json'

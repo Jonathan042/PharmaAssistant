@@ -13,7 +13,7 @@ import cogent.service.BatchService;
 
 @CrossOrigin
 @RestController
-@RequestMapping(path="/api")
+@RequestMapping(path="/rest")
 public class BatchController {
 	
 	@Autowired
